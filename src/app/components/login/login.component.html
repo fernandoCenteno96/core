@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row align-items-center mt-5 ">
+        <div class=" col-md-5 offset-md-3">
+            
+                <img src="../../../assets/images/logo.jpg" class="img-thumbnail" alt="">
+                <h3>Bienvenido,ingrese sus datos</h3>
+                <form  [formGroup]="formLogin">
+                <div class="form-group">
+                 <label for="Email">Correo electronico</label>
+                <input type="email" class="form-control"  formControlName="email"id="Email" aria-describedby="emailHelp">
+                <div *ngIf="formLogin.controls['email'].invalid && formLogin.controls['email'].dirty" class="alert      alert-danger" role="alert">
+                    <span *ngIf="formLogin.controls['email'].errors.required" >Correo es requerido </span>
+                    <span *ngIf="formLogin.controls['email'].errors.email"  >Correo no valido</span>
+                  </div>
+                  
+                
+                </div>
+                <div class="form-group">
+                <label for="Password">Contraseña</label>
+                <input type="password" (keyUp.enter)="login()" formControlName="password" class="form-control" id="Password">
+
+                <div *ngIf="formLogin.controls['password'].dirty && formLogin.controls['password'].invalid" class="alert alert-danger" role="alert">
+                 
+                 <span> Contraseña requerida</span>   
+                   
+                
+                </div>
+
+                </div>
+    
+                <button type="submit" (click)="login()" [disabled]="!formLogin.valid" class="btn btn-primary ">Ingresar</button>
+            </form>
+            <div *ngIf="!datosCorrectos" class="alert alert-danger" role="alert">
+               {{textoError}}
+              </div>
+              <ngx-spinner
+                bdColor="rgba(51,51,51,0.8)"
+                size="large"
+                color="#fff"
+                type="pacman"
+                >
+                <p style="font-size: 20px; color: white">Cargando...</p>
+                </ngx-spinner>
+        </div>
+       
+    </div>
+    
+
+</div>
+
